@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="referrer" content="no-referrer">
 <meta name="author" content="Andres Espindola">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-N0HxVVrVGKUqAdFt/xY3bnXO1YRYGgGCqh5UxVIkpZM='; style-src 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'none'; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 4 7v8c0 7.2 5.1 13.4 12 15 6.9-1.6 12-7.8 12-15V7z' fill='%231f3a68'/%3E%3Cpath d='m10.5 16 4 4 7-8' fill='none' stroke='%23f2c14e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GRC Control Workbench — Demo by Andres Espindola</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* Layout idea: a quiet audit ledger. Left rail for navigation, a scanning surface in the middle,
    and a slide-in record drawer for one control at a time. Control and requirement IDs set in mono. */
@@ -23,9 +23,9 @@
   --warn: #a5620a; --warn-soft: #fbefd9;
   --bad: #b3352b; --bad-soft: #f8e3e0;
   --na: #7b8794; --na-soft: #eceff2;
-  --font-display: "Public Sans", "Segoe UI", system-ui, sans-serif;
-  --font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-display: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Menlo, Consolas, monospace;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -1702,7 +1702,7 @@ table.loglog td { vertical-align: top; }
     drawerCtx = { kind: "rec", mod: key, id, isNew, draft };
     const title = draft.title || draft.name || (key === "tests" && draft.controlId ? `Test of ${draft.controlId}` : "");
     $("#drawer").innerHTML = `<header><div><span class="mono muted">${isNew ? "New " + esc(m.singular) : esc(id)}${base?.example ? ` <span class="tag example">Example</span>` : ""}</span><h2 id="drawerTitle" style="font-size:18px">${isNew ? "Add a " + esc(m.singular) : esc(title || m.singular)}</h2></div><button class="btn small" data-act="close-drawer" aria-label="Close">Close</button></header>
-      <div class="body"><form class="form" id="recForm" autocomplete="off" onsubmit="return false">
+      <div class="body"><form class="form" id="recForm" autocomplete="off">
         ${isNew ? `<label class="f">ID<input class="field mono" id="rf__id" value="${esc(nextRecId(key, m.prefix))}"><span class="hint">Can't be changed later.</span></label>` : ""}
         ${m.fields.map((fl) => fieldHtml(fl, draft[fl.name])).join("")}
       </form>${key === "systems" && !isNew ? systemScopeNote(id) : ""}${key === "policies" && !isNew ? policyReviewPanel(id) : ""}</div>
@@ -2394,6 +2394,7 @@ table.loglog td { vertical-align: top; }
     confirmDialog("Reset the demo data?", "Every change you've made in this browser will be replaced with the original sample data for Pecan Creek University Health.", "Reset demo data", demoReset);
   });
 
+  document.addEventListener("submit", (e) => e.preventDefault(), true);
   // ---------- data ----------
   route();
   setTimeout(() => {

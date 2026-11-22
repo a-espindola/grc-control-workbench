@@ -56,6 +56,15 @@ Only frameworks published by government bodies or written for this project are i
 - Vanilla JavaScript, HTML and CSS in one file, with no frameworks, libraries or build step.
 - Charts and the heat map are drawn with HTML and CSS.
 - The demo saves to the visitor's browser storage (`localStorage`); nothing is sent to a server. **Reset demo data** in the banner restores the sample.
+- System fonts only, and no external requests (see Security and privacy).
+
+## Security and privacy
+
+- **No outside connections.** The page loads no external scripts, fonts or images; it uses the visitor's system fonts.
+- **Content Security Policy.** A strict policy blocks all outside scripts, connections, fonts, plugins and form submissions. Only the page's own script runs, pinned by its SHA-256 hash, so a modified copy of the script won't run.
+- **Data stays in the browser.** Demo changes are saved to the visitor's own `localStorage` and are never sent anywhere. There's no tracking or analytics.
+- **Untrusted text is escaped.** Everything a visitor types is HTML-escaped before display, and links only open web addresses (`http://` or `https://`), never script links.
+- **No referrer.** Links opened from the demo don't tell other sites where the visitor came from.
 
 ## Run it locally
 
@@ -65,7 +74,7 @@ Download `index.html` and open it in a browser. That's all it needs.
 
 1. Upload this folder's contents to a public repository named `grc-control-workbench`.
 2. In the repository, go to **Settings → Pages**, set **Branch** to `main` and the folder to `/ (root)`, then click **Save**.
-3. After a minute or two the demo is live at `https://YOUR-USERNAME.github.io/grc-control-workbench/`. Put that address in the live demo link at the top of this README.
+3. After a minute or two the demo is live at `https://a-espindola.github.io/grc-control-workbench/`. Put that address in the live demo link at the top of this README.
 
 ## Sample data
 
