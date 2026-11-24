@@ -1,6 +1,6 @@
 # GRC Control Workbench
 
-*A portfolio project by **Andres Espindola**.*
+*A practice portfolio project by **Andres Espindola**, built with AI assistance.*
 
 A single-page governance, risk and compliance (GRC) application that maps one unified set of 74 security controls to 15 frameworks and regulations, so a control is tested once and counts toward every framework it satisfies.
 
@@ -16,6 +16,8 @@ A single-page governance, risk and compliance (GRC) application that maps one un
 | ![Controls](screenshots/controls.png) **Controls:** one control set mapped across every framework | ![Control mapping](screenshots/control-mapping.png) **Control mapping:** one MFA control satisfying requirements in 12 frameworks |
 | ![Risk register](screenshots/risk-register.png) **Risk register:** residual heat map and score bands | ![POA&M and SPRS](screenshots/poam-sprs.png) **Findings & POA&M:** CMMC Level 2 SPRS scoring |
 | ![Policy review history](screenshots/policy-review-history.png) **Policy library:** month-end review dates, reasons for date changes and review history | ![Vendors](screenshots/vendors.png) **Third-party risk:** tiers, BAA status and assurance expiry |
+| ![Executive summary](screenshots/executive-summary.png) **Executive summary:** one-click leadership report for any module, ready to print or save as PDF | |
+| ![Key risk indicators](screenshots/key-risk-indicators.png) **Key risk indicators:** status against thresholds, trend and next reading due | ![KRI escalation](screenshots/kri-escalation.png) **KRI escalation:** an amber KRI escalated to a breach and tracked as a finding |
 
 ## Why I built it
 
@@ -23,11 +25,18 @@ Organizations under several frameworks at once (HIPAA, CMMC, NIST CSF, state rul
 
 ## Features
 
+- **Executive summaries:** every module, each framework and the overall program has an **Executive summary** button. It builds a one-page leadership report with an overall status (On track, Needs attention or At risk), headline metrics, key messages, the items that matter most and recommended next steps. Reports can be printed or saved as PDF, downloaded as a standalone HTML file, or copied as text.
+- **Navigation:** a sidebar grouped into Overview, Governance, Risk and Assurance, with icons, collapsible groups, a "Jump to a module" search (press `/`), red counts for overdue items, a collapsed icon-only mode and a slide-out menu on phones.
 - **Unified control mapping:** 74 controls across 19 domains mapped to framework requirements; add any framework and its requirements yourself.
 - **Frameworks:** grouped by category, reordered by drag and drop, switched on or off; requirements can be marked N/A with a reason.
-- **Dashboard:** readiness per framework, control status by domain and action items (overdue tests, findings, reviews, expiring exceptions).
+- **Dashboard:** readiness per framework, control status by domain, a key risk indicator panel and action items (KRIs in breach, overdue tests, findings, reviews, expiring exceptions).
 - **CMMC Level 2 SPRS scoring:** point values and POA&M eligibility rules per 32 CFR 170.24 and 170.21.
 - **Risk register:** likelihood × impact scoring, inherent and residual heat maps, and risks linked to the controls that treat them.
+- **Key risk indicators (KRIs):** target, warning level and tolerance limit per indicator, with values recorded on a schedule and shown as status, trend charts and next-due dates.
+  - **Escalation:** counts how many periods in a row a KRI has been amber or red, and treats it as a breach after a set number of amber periods.
+  - **Breach workflow:** a breach prompts a finding that is linked to the KRI, its risks and controls, so the response has an owner, due date and milestones.
+  - **Threshold history:** changing a threshold requires a reason, and every change is logged with who made it and when.
+  - **KRI library:** 18 starter indicators (vulnerability management, identity, people, third party, resilience, compliance), with suggested links to matching risks. Some calculate their value from the Workbench itself, such as overdue policy reviews.
 - **Findings and POA&M:** severity, milestones, due dates, and links to the requirements they affect.
 - **Control testing:** design and operating-effectiveness results that prompt a finding when a control fails.
 - **Third-party risk:** vendor tiers, BAA status, assurance report expiry and review dates.
@@ -88,4 +97,10 @@ All trademarks, product names and framework names mentioned in this project belo
 
 ## Author
 
-Designed and built by **Andres Espindola**, with AI-assisted development.
+Designed and built by **Andres Espindola**, with AI assistance.
+
+## AI assistance
+
+This application was built with the help of an AI assistant (Claude by Anthropic). I directed the project: I chose the features, frameworks and design, and reviewed and tested the results. The AI helped write the code, draft the framework mappings and generate the fictional sample data.
+
+It's a learning project, not a commercial product. Mappings and framework references may contain errors, so check them against the official sources before relying on them.
